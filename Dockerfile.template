@@ -1,10 +1,10 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
 
-RUN install_packages ffmpeg v4l-utils omxplayer jq
+RUN install_packages gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad v4l-utils jq
 
 WORKDIR /usr/src
 COPY start.sh .
 COPY 1080P50EDID.txt .
 
-CMD while : ; do echo "${MESSAGE=Idling...}"; sleep ${INTERVAL=600}; done
-# CMD ["/bin/bash", "/usr/src/start.sh"]
+# CMD while : ; do echo "${MESSAGE=Idling...}"; sleep ${INTERVAL=600}; done
+CMD ["/bin/bash", "/usr/src/start.sh"]

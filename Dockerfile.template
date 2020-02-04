@@ -1,9 +1,12 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
 
+EXPOSE 8888/udp
+
 RUN install_packages gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad v4l-utils jq
 
 WORKDIR /usr/src
 COPY start.sh .
+COPY test.sh .
 COPY 1080P50EDID.txt .
 
 # CMD while : ; do echo "${MESSAGE=Idling...}"; sleep ${INTERVAL=600}; done
